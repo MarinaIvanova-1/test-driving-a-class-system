@@ -1,27 +1,43 @@
 class Diary
   def initialize
+    @all_entries = []
   end
 
-  def add(entry) # entry is an instance of DiaryEntry
-    # Returns nothing
+  def add(entry) 
+    @all_entries << entry
   end
 
   def all
-    # Returns a list of instances of DiaryEntry
+    @all_entries
   end
 
   def count_words
-    # Returns the number of words in all diary entries
-    # HINT: This method should make use of the `count_words` method on DiaryEntry.
+    @count_words_all = 0
+    for entry in @all_entries
+      @count_words_all += entry.count_words
+    end
+    @count_words_all
   end
 
-  def reading_time(wpm) # wpm is an integer representing
-                        # the number of words the user can read per minute
-    # Returns an integer representing an estimate of the reading time in minutes
-    # if the user were to read all entries in the diary.
+  def reading_time(wpm) 
+    @count_words_all = 0
+    for entry in @all_entries
+      @count_words_all += entry.count_words
+    end
+    (@count_words_all.to_f / wpm).ceil 
   end
 
   def find_best_entry_for_reading_time(wpm, minutes)
+    read_words = wpm * minutes
+    hash_of_entries = {}
+    for entry in @all_entries
+      hash[entry] = entry.count_words
+    end
+    puts hash_sorted
+    hash_sorted = hash_of_entries.sort_by{|entry, length| length}
+
+
+
         # `wpm` is an integer representing the number of words the user can read
         # per minute.
         # `minutes` is an integer representing the number of minutes the user
