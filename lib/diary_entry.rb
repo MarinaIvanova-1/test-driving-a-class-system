@@ -18,7 +18,7 @@ class DiaryEntry
   end
 
   def reading_time(wpm) 
-    (@contents.split(" ").length.to_f / wpm).ceil
+    (@contents.split(" ").length.to_f / wpm).ceil 
   end
 
   def reading_chunk(wpm, minutes) 
