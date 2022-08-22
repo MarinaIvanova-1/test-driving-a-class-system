@@ -1,20 +1,37 @@
 class TodoList
   def initialize
+    @all_todos = []
   end
 
-  def add(todo) # todo is an instance of Todo
-    # Returns nothing
+  def add(todo) 
+    @all_todos << todo
   end
 
   def incomplete
-    # Returns all non-done todos
+    fail "You don't have any tasks in the list!" if @all_todos.empty?
+    incomplete_list = []
+    @all_todos.each do |todo|
+      if todo.done == false
+        incomplete_list << todo
+      end
+    end
+    return incomplete_list
   end
 
   def complete
-    # Returns all complete todos
+    fail "You don't have any tasks in the list!" if @all_todos.empty?
+    complete_list = []
+    @all_todos.each do |todo|
+      if todo.done == true
+        complete_list << todo
+      end
+    end
+    return complete_list
   end
 
   def give_up!
-    # Marks all todos as complete
+    @all_todos.each do |todo|
+      todo.mark_done!
+    end
   end
 end

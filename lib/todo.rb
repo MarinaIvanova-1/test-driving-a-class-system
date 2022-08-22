@@ -1,5 +1,5 @@
 class Todo
-  def initialize(task) 
+  def initialize(task, done = false) 
     @task = task
     @done = false
 
@@ -7,6 +7,10 @@ class Todo
 
   def task
     return @task
+  end
+
+  def done
+    return @done
   end
 
   def mark_done!
